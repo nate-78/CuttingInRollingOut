@@ -1,0 +1,26 @@
+<?php
+/**
+ * Site Footer
+ *
+ * @package      EAStarter
+ * @author       Bill Erickson
+ * @since        1.0.0
+ * @license      GPL-2.0+
+**/
+?>
+        
+    <?php tha_footer_before(); ?>
+
+    <?php 
+        tha_footer_top();
+        tha_footer_bottom();
+    ?>
+
+    <?php tha_footer_after(); ?>
+
+    <?php
+        tha_body_bottom();
+        wp_footer();
+    ?>
+</body>
+</html>
