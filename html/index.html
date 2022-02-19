@@ -24,7 +24,7 @@
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="#">Gallery</a>
+                            <a href="#gallery">Gallery</a>
                         </li>
                     </ul>
                     <div class="logo">
@@ -98,7 +98,7 @@
                         <div class="form-wrap">
                             <h3><strong>Free</strong> Estimate</h3>
                             <hr class="short">
-                            <form method="POST" action="https://formspree.io/f/xjvlwaaj">
+                            <form method="POST" action="https://formspree.io/f/xjvlwaaj" id="contact-form">
                                 <p>
                                     <label for="name">
                                         Name*<br>
@@ -121,6 +121,7 @@
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </p>
                             </form>
+                            <div id="form-status"></div>
                         </div>
                     </div>
                 </div>
@@ -149,18 +150,73 @@
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="#">Gallery</a>
+                            <a href="#gallery">Gallery</a>
                         </li>
                         <li>
-                            <a href="#">About</a>
+                            <a href="#about-us">About</a>
                         </li>
                         <li>
-                            <a href="#">Contact</a>
+                            <a href="#contact">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('click', function (event) {
+                if (event.target.localName == "a") {
+                    event.preventDefault();
+                    // scroll to section if it has a # 
+                    let url = event.target.attributes.href.nodeValue;
+                    console.log(url);
+                    if (url.indexOf('#') > -1) {
+                        let offsetTop = document.querySelector(url).offsetTop;
+                        scroll({
+                            top: offsetTop,
+                            behavior: "smooth"
+                        });
+                    } else {
+                        window.location.href = url;
+                    }
+                }
+            });
+        }, false);
+
+        const form = document.getElementById("contact-form");
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("form-status");
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Thanks for your submission!";
+                    form.reset();
+                    form.style.display = "none";
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                        } else {
+                            status.innerHTML = "Oops! There was a problem submitting your form"
+                        }
+                    });
+                }
+            }).catch(error => {
+                status.innerHTML = "Oops! There was a problem submitting your form"
+            });
+        }
+
+        form.addEventListener("submit", handleSubmit);
+    </script>
 </body>
 </html>
