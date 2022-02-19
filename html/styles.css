@@ -207,6 +207,19 @@ hr.short {
     text-align: center;
 }
 
+#form .form-col p:not(.center) {
+    text-align: left;
+}
+#form .form-col p input:not([type=submit]),
+#form .form-col p textarea {
+    width: 100%;
+    padding: 7px 5px;
+}
+
+#form .form-col .form-wrap {
+    max-width: 315px;
+}
+
 #form hr.short {
     background-color: #00436c;
 }
