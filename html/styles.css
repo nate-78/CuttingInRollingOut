@@ -260,3 +260,63 @@ footer .nav li:last-child {
 footer .nav li a {
     font-size: 14px;
 }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+	.logo {
+		max-width: 200px;
+	}
+
+	#about .row {
+		grid-gap: 5rem;
+	}
+
+	#form .form-col {
+		width: 60%;
+	}
+}
+
+@media (max-width: 767px) {
+	header .nav {
+		display: none!important;
+	}
+	header .logo {
+		margin: auto;
+	}
+
+	#about .row {
+		grid-template-columns: 1fr;
+		grid-gap: 4rem;
+	}
+	#about .row .col {
+		max-width: 350px;
+		margin: auto;
+	}
+	#about h2 {
+		max-width: 350px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#form .form-col {
+		width: 80%;
+	}
+}
+
+@media (max-width: 660px) {
+	#form .form-col {
+		width: 100%;
+	}
+}
+
+@media (max-width: 420px) {
+	footer .nav {
+		display: none!important;
+	}
+	footer {
+		padding-bottom: 0;
+	}
+	.main-copy a span {
+		display: none;
+	}
+}
