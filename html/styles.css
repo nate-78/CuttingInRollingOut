@@ -137,6 +137,7 @@ header.header {
 
 .main-copy {
     text-align: center;
+    padding: 0 10px;
 }
 
 .btn {
@@ -214,6 +215,7 @@ hr.short {
 #form .form-col p textarea {
     width: 100%;
     padding: 7px 5px;
+    box-sizing: border-box;
 }
 
 #form .form-col .form-wrap {
@@ -319,4 +321,7 @@ footer .nav li a {
 	.main-copy a span {
 		display: none;
 	}
+    h1 {
+        font-size: 1.75rem;
+    }
 }
